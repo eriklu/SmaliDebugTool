@@ -31,7 +31,8 @@
    ### smali 代码示例
   
   		1. 输出字符串
-     		```const-string v0, "file xxx.smali line xxx"
+     		```smali
+const-string v0, "file xxx.smali line xxx"
      		invoke-static {v0}, Ldebug/DebugTool;->logcat(Ljava/lang/String;)V
      		invoke-static {v0}, Ldebug/DebugTool;->log2File(Ljava/lang/String;)V
      		```
