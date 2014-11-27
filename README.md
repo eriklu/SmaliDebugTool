@@ -29,31 +29,31 @@ Smali输出信息工具集。包含一组函数用来在smali文件中增加输�
   
 ### smali 代码示例
   
-1. 输出字符串
+- 输出字符串
 ``` smali
 const-string v0, "file xxx.smali line xxx"
 invoke-static {v0}, Ldebug/DebugTool;->logcat(Ljava/lang/String;)V
 invoke-static {v0}, Ldebug/DebugTool;->log2File(Ljava/lang/String;)V
 ```
-2. 输出byte数组
+- 输出byte数组
 ``` smali
 #这里v0是指向数组对象的指针	
 invoke-static {v0}, Ldebug/DebugTool;->logcat([B)V
 invoke-static {v0}, Ldebug/DebugTool;->log2File([B)V
 ```
-3. 输出函数执行栈
+- 输出函数执行栈
 ``` smali
 #//输出到logcat
 invoke-static {}, Ldebug/DebugTool$ThreadStack;->logcat()V
 #//输出到文件
 invoke-static {}, Ldebug/DebugTool$ThreadStack;->log2File()V
 ```
-4. 执行函数
+- 执行函数
 ``` smali
 const－class v0, Lxx/yy  #xx／yy为线程类
 invoke-static {v0}, Ldebug/DebugTool$ThreadTask;->runThread(Ljava/lang/Class;)V
 ```
-5. 设置未处理异常处理器
+- 设置未处理异常处理器
 ``` smali
 invoke-static {}, Ldebug/DebugTool;->setUnhandleExceptionHandler()V
 ```
