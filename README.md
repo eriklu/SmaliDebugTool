@@ -30,11 +30,11 @@ Smali输出信息工具集。包含一组函数用来在smali文件中增加输�
 ### smali 代码示例
   
 1. 输出字符串
-``` smali
-const-string v0, "file xxx.smali line xxx"
-invoke-static {v0}, Ldebug/DebugTool;->logcat(Ljava/lang/String;)V
-invoke-static {v0}, Ldebug/DebugTool;->log2File(Ljava/lang/String;)V
-```
+  ``` smali
+  const-string v0, "file xxx.smali line xxx"
+  invoke-static {v0}, Ldebug/DebugTool;->logcat(Ljava/lang/String;)V
+  invoke-static {v0}, Ldebug/DebugTool;->log2File(Ljava/lang/String;)V
+  ```
 2. 输出byte数组
 ``` smali
 #这里v0是指向数组对象的指针	
