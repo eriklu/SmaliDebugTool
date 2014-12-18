@@ -319,9 +319,19 @@ public class DebugTool {
 
 		@Override
 		public void uncaughtException(Thread thread, Throwable ex) {
-			DebugTool.ThreadStack.logcat();
-			DebugTool.ThreadStack.log2File();
-			DebugTool.log2File(ex.getLocalizedMessage());
+			StackTraceElement[] stacks = ex.getStackTrace();
+			StringBuilder sb = new StringBuilder();
+			for(StackTraceElement stack : stacks){
+				sb.append(stack.toString()).append("\n");
+			}
+			
+			
+			DebugTool.logcat(sb.toString());
+			DebugTool.log2File(sb.toString());
+			DebugTool.logcat("error msg:" + ex.toString());
+			DebugTool.log2File("error msg:" + ex.toString());
+			
+			System.exit(0);
 		}
 		
 	}

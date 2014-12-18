@@ -19,7 +19,7 @@
     .locals 0
 
     .prologue
-    .line 162
+    .line 171
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -30,12 +30,12 @@
     .param p0, "o"    # Ldebug/DebugTool$Object;
 
     .prologue
-    .line 176
+    .line 185
     sget-object v0, Ldebug/DebugTool;->_filename:Ljava/lang/String;
 
     invoke-static {v0, p0}, Ldebug/DebugTool$Object;->log2File(Ljava/lang/String;Ldebug/DebugTool$Object;)V
 
-    .line 177
+    .line 186
     return-void
 .end method
 
@@ -45,19 +45,19 @@
     .param p1, "o"    # Ldebug/DebugTool$Object;
 
     .prologue
-    .line 180
+    .line 189
     if-nez p1, :cond_0
 
-    .line 181
+    .line 190
     const-string v0, "object is null"
 
     invoke-static {p0, v0}, Ldebug/DebugTool;->log2File(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 185
+    .line 194
     :goto_0
     return-void
 
-    .line 183
+    .line 192
     :cond_0
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -103,19 +103,19 @@
     .param p0, "o"    # Ldebug/DebugTool$Object;
 
     .prologue
-    .line 168
+    .line 177
     if-nez p0, :cond_0
 
-    .line 169
+    .line 178
     const-string v0, "object is null"
 
     invoke-static {v0}, Ldebug/DebugTool;->logcat(Ljava/lang/String;)V
 
-    .line 173
+    .line 182
     :goto_0
     return-void
 
-    .line 171
+    .line 180
     :cond_0
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -161,7 +161,7 @@
     .param p0, "o"    # Ldebug/DebugTool$Object;
 
     .prologue
-    .line 164
+    .line 173
     if-nez p0, :cond_0
 
     const-string v0, "true"
@@ -169,10 +169,10 @@
     :goto_0
     invoke-static {v0}, Ldebug/DebugTool;->logcat(Ljava/lang/String;)V
 
-    .line 165
+    .line 174
     return-void
 
-    .line 164
+    .line 173
     :cond_0
     const-string v0, "false"
 

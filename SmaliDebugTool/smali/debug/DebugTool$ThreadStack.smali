@@ -19,7 +19,7 @@
     .locals 0
 
     .prologue
-    .line 137
+    .line 146
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -29,24 +29,24 @@
     .locals 8
 
     .prologue
-    .line 152
+    .line 161
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
 
     move-result-object v3
 
-    .line 153
+    .line 162
     .local v3, "t":Ljava/lang/Thread;
     invoke-virtual {v3}, Ljava/lang/Thread;->getStackTrace()[Ljava/lang/StackTraceElement;
 
     move-result-object v2
 
-    .line 154
+    .line 163
     .local v2, "stacks":[Ljava/lang/StackTraceElement;
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 155
+    .line 164
     .local v0, "sb":Ljava/lang/StringBuilder;
     array-length v5, v2
 
@@ -55,18 +55,18 @@
     :goto_0
     if-lt v4, v5, :cond_0
 
-    .line 158
+    .line 167
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v4
 
     return-object v4
 
-    .line 155
+    .line 164
     :cond_0
     aget-object v1, v2, v4
 
-    .line 156
+    .line 165
     .local v1, "stack":Ljava/lang/StackTraceElement;
     invoke-virtual {v1}, Ljava/lang/StackTraceElement;->toString()Ljava/lang/String;
 
@@ -80,7 +80,7 @@
 
     invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 155
+    .line 164
     add-int/lit8 v4, v4, 0x1
 
     goto :goto_0
@@ -90,14 +90,14 @@
     .locals 1
 
     .prologue
-    .line 144
+    .line 153
     invoke-static {}, Ldebug/DebugTool$ThreadStack;->getThreadStack()Ljava/lang/String;
 
     move-result-object v0
 
     invoke-static {v0}, Ldebug/DebugTool;->log2File(Ljava/lang/String;)V
 
-    .line 145
+    .line 154
     return-void
 .end method
 
@@ -106,14 +106,14 @@
     .param p0, "filename"    # Ljava/lang/String;
 
     .prologue
-    .line 148
+    .line 157
     invoke-static {}, Ldebug/DebugTool$ThreadStack;->getThreadStack()Ljava/lang/String;
 
     move-result-object v0
 
     invoke-static {p0, v0}, Ldebug/DebugTool;->log2File(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 149
+    .line 158
     return-void
 .end method
 
@@ -121,13 +121,13 @@
     .locals 1
 
     .prologue
-    .line 140
+    .line 149
     invoke-static {}, Ldebug/DebugTool$ThreadStack;->getThreadStack()Ljava/lang/String;
 
     move-result-object v0
 
     invoke-static {v0}, Ldebug/DebugTool;->logcat(Ljava/lang/String;)V
 
-    .line 141
+    .line 150
     return-void
 .end method

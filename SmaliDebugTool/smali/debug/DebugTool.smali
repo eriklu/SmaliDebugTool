@@ -37,7 +37,7 @@
     .locals 2
 
     .prologue
-    .line 65
+    .line 74
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
@@ -72,12 +72,12 @@
 
     sput-object v0, Ldebug/DebugTool;->_filename:Ljava/lang/String;
 
-    .line 66
+    .line 75
     const-string v0, "smaliDebugLog"
 
     sput-object v0, Ldebug/DebugTool;->_tag:Ljava/lang/String;
 
-    .line 57
+    .line 66
     return-void
 .end method
 
@@ -85,7 +85,7 @@
     .locals 0
 
     .prologue
-    .line 57
+    .line 66
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -96,7 +96,7 @@
     .param p0, "msg"    # Ljava/lang/String;
 
     .prologue
-    .line 70
+    .line 79
     new-instance v0, Ljava/text/SimpleDateFormat;
 
     const-string v1, "yyyymmdd HHMMss"
@@ -105,7 +105,7 @@
 
     invoke-direct {v0, v1, v2}, Ljava/text/SimpleDateFormat;-><init>(Ljava/lang/String;Ljava/util/Locale;)V
 
-    .line 71
+    .line 80
     .local v0, "sdf":Ljava/text/SimpleDateFormat;
     const-string v1, "%s:%s\n"
 
@@ -141,12 +141,12 @@
     .param p0, "msg"    # Ljava/lang/String;
 
     .prologue
-    .line 75
+    .line 84
     sget-object v0, Ldebug/DebugTool;->_filename:Ljava/lang/String;
 
     invoke-static {v0, p0}, Ldebug/DebugTool;->log2File(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 76
+    .line 85
     return-void
 .end method
 
@@ -156,7 +156,7 @@
     .param p1, "msg"    # Ljava/lang/String;
 
     .prologue
-    .line 80
+    .line 89
     :try_start_0
     new-instance v1, Ljava/io/FileOutputStream;
 
@@ -164,7 +164,7 @@
 
     invoke-direct {v1, p0, v2}, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;Z)V
 
-    .line 81
+    .line 90
     .local v1, "fout":Ljava/io/FileOutputStream;
     invoke-static {p1}, Ldebug/DebugTool;->format(Ljava/lang/String;)Ljava/lang/String;
 
@@ -176,33 +176,33 @@
 
     invoke-virtual {v1, v2}, Ljava/io/FileOutputStream;->write([B)V
 
-    .line 82
+    .line 91
     invoke-virtual {v1}, Ljava/io/FileOutputStream;->close()V
     :try_end_0
     .catch Ljava/io/FileNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
     .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_1
 
-    .line 90
+    .line 99
     .end local v1    # "fout":Ljava/io/FileOutputStream;
     :goto_0
     return-void
 
-    .line 83
+    .line 92
     :catch_0
     move-exception v0
 
-    .line 85
+    .line 94
     .local v0, "e":Ljava/io/FileNotFoundException;
     invoke-virtual {v0}, Ljava/io/FileNotFoundException;->printStackTrace()V
 
     goto :goto_0
 
-    .line 86
+    .line 95
     .end local v0    # "e":Ljava/io/FileNotFoundException;
     :catch_1
     move-exception v0
 
-    .line 88
+    .line 97
     .local v0, "e":Ljava/io/IOException;
     invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
 
@@ -215,7 +215,7 @@
     .param p1, "msg"    # [B
 
     .prologue
-    .line 95
+    .line 104
     :try_start_0
     new-instance v1, Ljava/io/FileOutputStream;
 
@@ -223,7 +223,7 @@
 
     invoke-direct {v1, p0, v3}, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;Z)V
 
-    .line 96
+    .line 105
     .local v1, "fout":Ljava/io/FileOutputStream;
     new-instance v2, Ljava/text/SimpleDateFormat;
 
@@ -231,7 +231,7 @@
 
     invoke-direct {v2, v3}, Ljava/text/SimpleDateFormat;-><init>(Ljava/lang/String;)V
 
-    .line 97
+    .line 106
     .local v2, "sdf":Ljava/text/SimpleDateFormat;
     new-instance v3, Ljava/util/Date;
 
@@ -247,7 +247,7 @@
 
     invoke-virtual {v1, v3}, Ljava/io/FileOutputStream;->write([B)V
 
-    .line 98
+    .line 107
     const-string v3, ":"
 
     invoke-virtual {v3}, Ljava/lang/String;->getBytes()[B
@@ -256,10 +256,10 @@
 
     invoke-virtual {v1, v3}, Ljava/io/FileOutputStream;->write([B)V
 
-    .line 99
+    .line 108
     invoke-virtual {v1, p1}, Ljava/io/FileOutputStream;->write([B)V
 
-    .line 100
+    .line 109
     const-string v3, "\n"
 
     invoke-virtual {v3}, Ljava/lang/String;->getBytes()[B
@@ -268,34 +268,34 @@
 
     invoke-virtual {v1, v3}, Ljava/io/FileOutputStream;->write([B)V
 
-    .line 101
+    .line 110
     invoke-virtual {v1}, Ljava/io/FileOutputStream;->close()V
     :try_end_0
     .catch Ljava/io/FileNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
     .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_1
 
-    .line 109
+    .line 118
     .end local v1    # "fout":Ljava/io/FileOutputStream;
     .end local v2    # "sdf":Ljava/text/SimpleDateFormat;
     :goto_0
     return-void
 
-    .line 102
+    .line 111
     :catch_0
     move-exception v0
 
-    .line 104
+    .line 113
     .local v0, "e":Ljava/io/FileNotFoundException;
     invoke-virtual {v0}, Ljava/io/FileNotFoundException;->printStackTrace()V
 
     goto :goto_0
 
-    .line 105
+    .line 114
     .end local v0    # "e":Ljava/io/FileNotFoundException;
     :catch_1
     move-exception v0
 
-    .line 107
+    .line 116
     .local v0, "e":Ljava/io/IOException;
     invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
 
@@ -307,12 +307,12 @@
     .param p0, "msg"    # [B
 
     .prologue
-    .line 112
+    .line 121
     sget-object v0, Ldebug/DebugTool;->_filename:Ljava/lang/String;
 
     invoke-static {v0, p0}, Ldebug/DebugTool;->log2File(Ljava/lang/String;[B)V
 
-    .line 113
+    .line 122
     return-void
 .end method
 
@@ -321,12 +321,12 @@
     .param p0, "msg"    # Ljava/lang/String;
 
     .prologue
-    .line 117
+    .line 126
     sget-object v0, Ldebug/DebugTool;->_tag:Ljava/lang/String;
 
     invoke-static {v0, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 118
+    .line 127
     return-void
 .end method
 
@@ -337,12 +337,12 @@
     .prologue
     const/4 v3, 0x0
 
-    .line 121
+    .line 130
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 122
+    .line 131
     .local v1, "sb":Ljava/lang/StringBuilder;
     array-length v4, p0
 
@@ -351,21 +351,21 @@
     :goto_0
     if-lt v2, v4, :cond_0
 
-    .line 125
+    .line 134
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v2
 
     invoke-static {v2}, Ldebug/DebugTool;->logcat(Ljava/lang/String;)V
 
-    .line 127
+    .line 136
     return-void
 
-    .line 122
+    .line 131
     :cond_0
     aget-byte v0, p0, v2
 
-    .line 123
+    .line 132
     .local v0, "b":B
     const-string v5, "%02x"
 
@@ -385,7 +385,7 @@
 
     invoke-virtual {v1, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 122
+    .line 131
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_0
@@ -395,13 +395,13 @@
     .locals 1
 
     .prologue
-    .line 134
+    .line 143
     new-instance v0, Ldebug/DebugTool$DefalutUncaughtExceptionHandler;
 
     invoke-direct {v0}, Ldebug/DebugTool$DefalutUncaughtExceptionHandler;-><init>()V
 
     invoke-static {v0}, Ljava/lang/Thread;->setDefaultUncaughtExceptionHandler(Ljava/lang/Thread$UncaughtExceptionHandler;)V
 
-    .line 135
+    .line 144
     return-void
 .end method
