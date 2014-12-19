@@ -21,12 +21,12 @@ import java.util.List;
  * 
  * @author Erik Lu
  * 
- * Ä¿µÄÊÇÌæ»»android xmlÎÄ¼şÖĞÒıÓÃµ½µ½²»¹æÔòµÄÀàÃû¡£
- * ÅäºÏapktoolĞŞ¸Ä°æÊ¹ÓÃ
+ * ç›®çš„æ˜¯æ›¿æ¢android xmlæ–‡ä»¶ä¸­å¼•ç”¨åˆ°åˆ°ä¸è§„åˆ™çš„ç±»åã€‚
+ * é…åˆapktoolä¿®æ”¹ç‰ˆä½¿ç”¨
  *
- * ×ª»»android xmlÎÄ¼şÖĞµÄ×Ö·û´®¡£
+ * è½¬æ¢android xmlæ–‡ä»¶ä¸­çš„å­—ç¬¦ä¸²ã€‚
  * 
- * ¿ÉÒÔ×ö·±¼òÌå×ª»»¡£
+ * å¯ä»¥åšç¹ç®€ä½“è½¬æ¢ã€‚
  *
  */
 
@@ -36,9 +36,29 @@ public class AXMLStringTransformer {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		if(args.length <= 1){
+			System.out.println("Usage: java AXMLStringTransformer infile [outdir]\n\tjava AXMLStringTransformer indir [outdir]\n");
+			try {
+				System.in.read();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.exit(1);
+		
+		}
+		
+		String infile = null, outfile = null;
+		if(args.length > 1){
+			infile = args[1];
+		}
+		
+		if(args.length > 2){
+			outfile = args[2];
+		}
+		
 		try {
-			transform("/Users/aoro/Downloads/test/111/1/res", new StringHexEncoderTransformer(), new FilenameFilter() {
+			transform(infile, new StringHexEncoderTransformer(), new FilenameFilter() {
 				
 				@Override
 				public boolean accept(File dir, String name) {
@@ -46,7 +66,7 @@ public class AXMLStringTransformer {
 					if(name.endsWith(".xml")) return true;
 					return false;
 				}
-			}, ".");
+			}, outfile);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,11 +76,11 @@ public class AXMLStringTransformer {
 	
 	/**
 	 * 
-	 * @param file Òª´¦ÀíµÄandroid xml ÎÄ¼ş»òÄ¿Â¼.
-	 * @param transformer ×Ö·û´®Ó³ÉäÆ÷
-	 * @param filenameFilter ÎÄ¼şÃû¹ıÂËÆ÷£¬¿ÉÒÔÎª¿Õ
-	 * @param outputDir Êä³öÄ¿Â¼£¬ÈôÎªnullÔò¸²¸ÇÔ­Ê¼ÎÄ¼ş
-	 * @throws IOException outputDir²»ÊÇºÏ·¨Ä¿Â¼
+	 * @param file è¦å¤„ç†çš„android xml æ–‡ä»¶æˆ–ç›®å½•.
+	 * @param transformer å­—ç¬¦ä¸²æ˜ å°„å™¨
+	 * @param filenameFilter æ–‡ä»¶åè¿‡æ»¤å™¨ï¼Œå¯ä»¥ä¸ºç©º
+	 * @param outputDir è¾“å‡ºç›®å½•ï¼Œè‹¥ä¸ºnullåˆ™è¦†ç›–åŸå§‹æ–‡ä»¶
+	 * @throws IOException outputDirä¸æ˜¯åˆæ³•ç›®å½•
 	 */
 	public static void transform(String file, StringTransformer transformer, FilenameFilter filenameFilter, String outputDir) throws IOException{
 		if( (file == null) ||  (transformer==null)) return;
@@ -70,12 +90,12 @@ public class AXMLStringTransformer {
 			outFileDir = new File(outputDir);
 			if (outFileDir.exists() && !outFileDir.isDirectory()) {
 				outFileDir = null;
-				throw new IOException(outputDir + "²»ÊÇÒ»¸ö¿ÉĞ´Ä¿Â¼!");
+				throw new IOException(outputDir + "ä¸æ˜¯ä¸€ä¸ªå¯å†™ç›®å½•!");
 			} else {
 				outFileDir.mkdirs();
 				if (!outFileDir.exists()) {
 					outFileDir = null;
-					throw new IOException(outputDir + "Ä¿Â¼´´½¨Ê§°Ü!");
+					throw new IOException(outputDir + "ç›®å½•åˆ›å»ºå¤±è´¥!");
 				}
 			}
 		}
@@ -140,7 +160,7 @@ public class AXMLStringTransformer {
 			isUTF8 = (flag & 0x00000100) != 0;
 			
 			stringOffsets = new int[stringCnt];
-			//if(styleCnt != 0) throw new IllegalArgumentException("º¬ÓĞstyle×Ö·û´®!");
+			//if(styleCnt != 0) throw new IllegalArgumentException("å«æœ‰styleå­—ç¬¦ä¸²!");
 			for(int i=0; i<stringCnt; i++){
 				in.read(buf4);
 				stringOffsets[i] = toInt(buf4);

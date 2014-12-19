@@ -57,3 +57,11 @@ invoke-static {v0}, Ldebug/DebugTool$ThreadTask;->runThread(Ljava/lang/Class;)V
 ``` smali
 invoke-static {}, Ldebug/DebugTool;->setUnhandleExceptionHandler()V
 ```
+
+#### dist目录
+1. apktool2.0_slow.jar:修改版apktool
+2. AXMLStringTransformer.jar: 和apktool2.0_slow.jar 配合使用的android xml资源处理工具 .
+	1.用法
+	java -jar AXMLStringTransformer.jar infile [outfile]
+	java -jar AXMLStringTransformer.jar indir [outfile]
+
