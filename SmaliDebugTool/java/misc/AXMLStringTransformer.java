@@ -21,12 +21,12 @@ import java.util.List;
  * 
  * @author Erik Lu
  * 
- * 目的是替换android xml文件中引用到到不规则的类名。
- * 配合apktool修改版使用
+ * Ä¿µÄÊÇÌæ»»android xmlÎÄ¼þÖÐÒýÓÃµ½µ½²»¹æÔòµÄÀàÃû¡£
+ * ÅäºÏapktoolÐÞ¸Ä°æÊ¹ÓÃ
  *
- * 转换android xml文件中的字符串。
+ * ×ª»»android xmlÎÄ¼þÖÐµÄ×Ö·û´®¡£
  * 
- * 可以做繁简体转换。
+ * ¿ÉÒÔ×ö·±¼òÌå×ª»»¡£
  *
  */
 
@@ -76,11 +76,11 @@ public class AXMLStringTransformer {
 	
 	/**
 	 * 
-	 * @param file 要处理的android xml 文件或目录.
-	 * @param transformer 字符串映射器
-	 * @param filenameFilter 文件名过滤器，可以为空
-	 * @param outputDir 输出目录，若为null则覆盖原始文件
-	 * @throws IOException outputDir不是合法目录
+	 * @param file Òª´¦ÀíµÄandroid xml ÎÄ¼þ»òÄ¿Â¼.
+	 * @param transformer ×Ö·û´®Ó³ÉäÆ÷
+	 * @param filenameFilter ÎÄ¼þÃû¹ýÂËÆ÷£¬¿ÉÒÔÎª¿Õ
+	 * @param outputDir Êä³öÄ¿Â¼£¬ÈôÎªnullÔò¸²¸ÇÔ­Ê¼ÎÄ¼þ
+	 * @throws IOException outputDir²»ÊÇºÏ·¨Ä¿Â¼
 	 */
 	public static void transform(String file, StringTransformer transformer, FilenameFilter filenameFilter, String outputDir) throws IOException{
 		if( (file == null) ||  (transformer==null)) return;
@@ -90,12 +90,12 @@ public class AXMLStringTransformer {
 			outFileDir = new File(outputDir);
 			if (outFileDir.exists() && !outFileDir.isDirectory()) {
 				outFileDir = null;
-				throw new IOException(outputDir + "不是一个可写目录!");
+				throw new IOException(outputDir + "²»ÊÇÒ»¸ö¿ÉÐ´Ä¿Â¼!");
 			} else {
 				outFileDir.mkdirs();
 				if (!outFileDir.exists()) {
 					outFileDir = null;
-					throw new IOException(outputDir + "目录创建失败!");
+					throw new IOException(outputDir + "Ä¿Â¼´´½¨Ê§°Ü!");
 				}
 			}
 		}
@@ -107,7 +107,7 @@ public class AXMLStringTransformer {
 			String[] files = filenameFilter != null ?  f.list(filenameFilter) : f.list();
 			for(String filename : files){
 				if(file.equals(".") || filename.equals("..")) continue;
-				transform(f.getAbsolutePath() + File. separator + filename, transformer, filenameFilter, outputDir + File.separator + f.getName());
+				transform(f.getAbsolutePath() + File. separator + filename, transformer, filenameFilter, outputDir==null ? null :outputDir + File.separator + f.getName());
 			}
 		}else {
 			if((filenameFilter == null) || (filenameFilter!= null && filenameFilter.accept(f.getParentFile(), f.getName()))){
@@ -160,7 +160,7 @@ public class AXMLStringTransformer {
 			isUTF8 = (flag & 0x00000100) != 0;
 			
 			stringOffsets = new int[stringCnt];
-			//if(styleCnt != 0) throw new IllegalArgumentException("含有style字符串!");
+			//if(styleCnt != 0) throw new IllegalArgumentException("º¬ÓÐstyle×Ö·û´®!");
 			for(int i=0; i<stringCnt; i++){
 				in.read(buf4);
 				stringOffsets[i] = toInt(buf4);
@@ -276,11 +276,11 @@ public class AXMLStringTransformer {
 		
 		String outputFilename = null;
 		if(ourputDir == null){
-			outputFilename = inFile.getPath() + File.separator + inFile.getName();
+			outputFilename = inFile.getPath() ;
 		}else {
 			outputFilename = ourputDir.getPath() + File.separator + inFile.getName();
 		}
-		
+		System.out.println("save to :" + outputFilename);
 		FileOutputStream fout = new FileOutputStream(outputFilename);
 		fout.write(bao1.toByteArray());
 		fout.close();
